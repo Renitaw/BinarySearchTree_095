@@ -71,6 +71,34 @@ namespace BinarySearchTree_095
                     currentNode = currentNode.rihtchild;
             }
         }
+        public void inorder(Node ptr)
+        {
+            if (ROOT == null)
+            {
+                Console.WriteLine("Tree is empty");
+                return;
+            }
+            if (ptr == null)
+            {
+                inorder(ptr.lefftchild);
+                Console.WriteLine(ptr.info + " ");
+                inorder(ptr.rihtchild);
+            }
+        }
+        public void preorder(Node ptr)
+        {
+            if (ROOT == null)
+            {
+                Console.WriteLine("Tree is empty");
+                return;
+            }
+            if (ptr != null)
+            {
+                Console.WriteLine(ptr.info + " ");
+                preorder(ptr.lefftchild);
+                preorder(ptr.rihtchild);
+            }
+        }
 
 
 
