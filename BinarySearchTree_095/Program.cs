@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace BinarySearchTree_095
     {
         public string info;
         public Node lefftchild;
-        public Node Rightchild;
+        public Node rihtchild;
 
         // Constructor for the node class
 
@@ -18,22 +19,66 @@ namespace BinarySearchTree_095
         {
             info = i;
             lefftchild = l;
-            Rightchild = r;
+            rihtchild = r;
         }
     }
     /* A node class consist of three things, the information, references to the right child, and references to the left child */
     class BinaryTree
     {
         public Node ROOT;
-        public  BinaryTree()
+        public BinaryTree()
         {
             ROOT = null; /*Initializing ROOT to null*/
         }
-    }
-    internal class Program
-    {
-        static void Main(string[] args)
+        public void Insert(string element)/* Insert a node in the binary search tree */
         {
+            Node tmp, parent = null, currentNode = null;
+            search(element, ref parent, ref currentNode);
+            if (currentNode != null)/* Check if the node to be inserted already inserted or not */
+            {
+                Console.WriteLine("Duplicate words not allowerd");
+                return;
+            }
+            else /* if the specified node is not present */
+            {
+                tmp = new Node(element, null, null);
+                if (parent == null) /*if the trees is empty */
+                {
+                    ROOT = tmp;
+                }
+                else if (string.Compare(element, parent.info) < 0)
+                {
+                    if (string.Compare(element, parent.info) < 0)
+                        parent.lefftchild = tmp;
+                }
+                else
+                {
+                    parent.rihtchild = tmp;
+                }
+            }
+        }
+        public void search(string element, ref Node parent, ref Node currentNode)
+        {
+            /*This function searchs the currentNode of the specified Node as well as the current node of its parent */
+            currentNode = ROOT;
+            parent = null;
+            while ((currentNode != null) && (currentNode.info != element))
+            {
+                parent = currentNode;
+                if (string.Compare(element, currentNode.info) < 0)
+                    currentNode = currentNode.lefftchild;
+                else
+                    currentNode = currentNode.rihtchild;
+            }
+        }
+
+
+
+        internal class Program
+        {
+            static void Main(string[] args)
+            {
+            }
         }
     }
 }
