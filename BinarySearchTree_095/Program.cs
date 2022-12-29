@@ -99,6 +99,22 @@ namespace BinarySearchTree_095
                 preorder(ptr.rihtchild);
             }
         }
+        public void postorder(Node ptr) /* preforms the postorder traversal of the tree*/
+        {
+            if (ROOT == null)
+            {
+                Console.WriteLine("Tree is empty");
+                return;
+            }
+            if (ptr != null)
+            {
+                postorder(ptr.lefftchild);
+                postorder(ptr.rihtchild);
+                Console.WriteLine(ptr.info + " ");
+            }
+        }
+
+
 
 
 
